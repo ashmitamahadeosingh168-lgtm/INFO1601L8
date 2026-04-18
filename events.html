@@ -31,33 +31,29 @@
 <script>
 
   function sendMessage(event){
-    event.preventDefault();//prevent the page from refreshing
+    event.preventDefault();
     let form = event.target;
     let text = document.querySelector('#message').value;
     
-    //create custom event
     let myevent = new CustomEvent('my-Event', {
       detail:{
-        text: text//set text in custom event
+        text: text
       }
     });
 
-    //trigger custom event on all listening elements
     let cards = document.querySelectorAll('.card-panel');
     for(let card of cards){
       card.dispatchEvent(myevent);
     }
-    //empty text field
     form.reset(); 
   }
 
   function receiveMessage(event){
-    let text = event.detail.text; //get text from custom event
-    let element = event.target; //get element on which the event occured on
+    let text = event.detail.text; 
+    let element = event.target; 
     element.innerHTML = text;
   }
 
-  //set up listeners
   let cards = document.querySelectorAll('.card-panel');
   for(let card of cards){
     card.addEventListener('my-Event', receiveMessage);
