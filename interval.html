@@ -17,18 +17,16 @@
     
     let timer;
     
-    //print the current time to the dom
     function printDate(){
       result.innerHTML = new Date().toLocaleTimeString();
     }
     
     function startTimer(){
-       //execute printDate() ever second
        timer =  setInterval(printDate, 1000);
     }
 
     function stopTimer(){
-      clearInterval(timer); // stops the timer
+      clearInterval(timer); 
     }
 
     start.addEventListener('click', startTimer);
